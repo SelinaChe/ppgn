@@ -31,9 +31,9 @@ layer {
 layer {
   name: "lstm2"
   type: "LSTM"
-  propagate_down: false
-  propagate_down: false
-  propagate_down: true
+  propagate_down: 0
+  propagate_down: 0
+  propagate_down: 0
   bottom: "lstm1"
   bottom: "cont_sentence"
   bottom: "image_features"

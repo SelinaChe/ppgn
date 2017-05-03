@@ -14,7 +14,7 @@ act_layer=fc8     # fc8 because the LRCN extract fc8 features from AlexNet
 sentence="${1}"   # A sentence with underscores between words e.g. a_pizza_on_a_table_at_a_restaurant 
 xy=0              # Spatial position for conv layers, for fc layers: xy = 0
 
-n_iters=200       # Run for N iterations
+n_iters=1       # Run for N iterations
 reset_every=0     # Reset the code every N iterations (for diversity). 0 to disable resetting.
 save_every=0      # Save a sample every N iterations. 0 to disable saving intermediate samples.
 lr=1              # Initial learning rate 
@@ -40,6 +40,10 @@ captioner_definition="nets/lrcn/lrcn_word_to_preds.deploy.prototxt"
 # Output dir
 output_dir="output/${act_layer}_eps1_${epsilon1}_eps3_${epsilon3}/${sentence}"
 mkdir -p ${output_dir}
+
+# For image matching
+gan_dir="GANImage/"
+mkdir -p ${gan_dir}
 
 # Directory to store samples
 if [ "${save_every}" -gt "0" ]; then
@@ -81,6 +85,7 @@ for seed in {0..2}; do
         montage `ls ${sample_dir}/*.jpg | head -40` -tile 10x -geometry +1+1 ${f_chain}
   
         readlink -f ${f_chain}
+
     fi
 done
 
@@ -91,3 +96,12 @@ montage ${output_dir}/${act_layer}_*.jpg -tile 3x -geometry +1+1 ${output_file}
 convert ${output_file} -gravity south -splice 0x10 ${output_file}
 convert $output_file -append -gravity Center -pointsize 30 label:"${sentence//_/ }" -append "$output_file"
 readlink -f ${output_file}
+
+cp -r ${output_dir} ${gan_dir}
+
+python label_samples.py ${gan_dir} test
+python label_samples.py ${gan_dir} train
+python extract_train_test_DBH.py data_feature/train.txt data_feature/test.txt 
+python image_matching.py data_feature/train_feature.txt data_feature/train_label.txt data_feature/test_feature.txt 
+
+

@@ -19,7 +19,7 @@ import util
 from sampler import Sampler
 
 if settings.gpu:
-    caffe.set_mode_gpu() # sampling on GPU (recommended for speed) 
+    caffe.set_mode_cpu() # sampling on GPU (recommended for speed) 
 
 class CaptionConditionalSampler(Sampler):
 
