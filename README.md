@@ -7,7 +7,7 @@ Refer to two related work:
 
 ["Plug & Play Generative Networks: Conditional Iterative Generation of Images in Latent Space"](http://arxiv.org/abs/1612.00005v1)
 
-["Deep Learning of Binary Hash Codes for Fast Image Retrieval"](Proceedings of the IEEE conference on computer vision and pattern recognition workshops. 2015.)
+["Deep Learning of Binary Hash Codes for Fast Image Retrieval"](http://www.cv-foundation.org/openaccess/content_cvpr_workshops_2015/W03/papers/Lin_Deep_Learning_of_2015_CVPR_paper.pdf)
 
 ## 1. Setup
 Follow the "Setup" process in ppgn(https://github.com/Evolving-AI-Lab/ppgn)
