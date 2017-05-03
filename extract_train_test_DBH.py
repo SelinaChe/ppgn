@@ -20,8 +20,8 @@ print("\t\tsuccessfully imported in "+str(time.clock()- sttime)+" Secs.\n")
 #model net to extract features
 mynet= "dbhnet"        #accepted values are alexnet, caffenet, googlenet
 if mynet== "dbhnet":
-    deploy= "/root/imretriveal/KevinNet_CIFAR10_deploy128.prototxt"
-    model= "/root/imretriveal/KevinNet_CIFAR10_128.caffemodel"
+    deploy= "nets/DBH/KevinNet_CIFAR10_deploy128.prototxt"
+    model= "nets/DBH//KevinNet_CIFAR10_128.caffemodel"
 elif mynet== "caffenet":
     deploy= "/root/py-faster-rcnn/caffe-fast-rcnn/models/bvlc_reference_caffenet/deploy.prototxt"
     model= "/root/py-faster-rcnn/caffe-fast-rcnn/models/bvlc_reference_caffenet/bvlc_reference_caffenet.caffemodel"
